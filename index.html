@@ -52,7 +52,7 @@
 <body>
     <div class="overlay"></div>
     <video id="scaryVideo" disablePictureInPicture controlsList="nodownload nofullscreen noplaybackrate">
-        <source src="https://drive.google.com/uc?export=download&id=1JbNr0JssIa2vH5zZ9d3G6CdPWrKTnxAI" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/deoler13/Deoler13b/c3d439e1d99ad098952eebb8ccb00c2050fb7200/scary.mp4" type="video/mp4">
         Your browser does not support the video.
     </video>
     <p class="watch-video" onclick="playVideo()">Click here to watch the video</p>
@@ -67,7 +67,7 @@
             
             audio.play().catch(error => {
                 console.log("Error playing audio:", error);
-                setTimeout(() => audio.play(), 1000); // تلاش مجدد بعد از ۱ ثانیه
+                setTimeout(() => audio.play(), 1000); // Retry after 1 second
             });
 
             document.querySelector(".watch-video").style.display = "none";
