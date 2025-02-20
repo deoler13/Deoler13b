@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scary Video</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            cursor: pointer;
+            color: white;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            text-align: center;
+        }
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/noisy.png');
+            opacity: 0.1;
+            z-index: -1;
+        }
+        video {
+            display: none;
+            width: 320px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 15px;
+            pointer-events: none; /* جلوگیری از کنترل ویدیو */
+        }
+        .watch-video {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #ff0000;
+            cursor: pointer;
+            text-decoration: underline;
+            animation: flicker 1s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <video id="scaryVideo" disablePictureInPicture controlsList="nodownload nofullscreen noplaybackrate">
+        <source src="videos/scary.mp4" type="video/mp4">
+        Your browser does not support the video.
+    </video>
+    <p class="watch-video" onclick="playVideo()">Click here to watch the video</p>
+    
+    <script>
+        function playVideo() {
+            let video = document.getElementById("scaryVideo");
+            let audio = new Audio("scary-sound.mp3");
+
+            video.style.display = "block";
+            video.play().catch(error => console.log("Error playing video:", error));
+            audio.play().catch(error => console.log("Error playing audio:", error));
+
+            document.querySelector(".watch-video").style.display = "none";
+
+            // وقتی ویدیو تمام شد، آن را از صفحه حذف کن
+            video.onended = function() {
+                video.remove();
+            };
+        }
+    </script>
+</body>
+</html>
